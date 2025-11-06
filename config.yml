@@ -2,30 +2,29 @@ baseURL: "https://imnajaniiiooo.github.io/"
 title: "وبلاگ حرفه‌ای من"
 languageCode: "fa-ir"
 defaultContentLanguage: "fa"
-theme: "hello-friend"
+theme: "PaperMod"
 
 params:
   defaultTheme: "auto"
-  displayFullLangName: false
+  profileMode:
+    enabled: true
+    title: "وبلاگ شخصی من"
+    subtitle: "اینجا جایی است که افکار و تجربیاتم را به اشتراک می‌گذارم."
   
-  menu:
-    main:
-      - identifier: "home"
-        name: "🏠 خانه"
-        url: "/"
-        weight: 1
-      - identifier: "posts"
-        name: "📝 مقالات"
-        url: "/posts/"
-        weight: 2
-      - identifier: "about"
-        name: "👤 درباره من"
-        url: "/about/"
-        weight: 3
-
   socialIcons:
     - name: "github"
       url: "https://github.com/imnajaniiiooo"
 
+menu:
+  main:
+    - identifier: "about"
+      name: "درباره من"
+      url: "/about/"
+      weight: 10
+    - identifier: "archives"
+      name: "آرشیو"
+      url: "/archives/"
+      weight: 20
+
 pagination:
-  pagerSize: 6
+  pagerSize: 5
