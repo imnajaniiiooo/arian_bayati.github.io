@@ -5,15 +5,9 @@ defaultContentLanguage: "fa"
 theme: "hello-friend"
 
 params:
-  # تنظیمات اصلی
   defaultTheme: "auto"
-  disableThemeToggle: false
+  displayFullLangName: false
   
-  # ظاهر و رنگ
-  brandColor: "#FF6B6B"
-  backgroundColor: "white"
-  
-  # منو
   menu:
     main:
       - identifier: "home"
@@ -21,7 +15,7 @@ params:
         url: "/"
         weight: 1
       - identifier: "posts"
-        name: "📝 مقالات" 
+        name: "📝 مقالات"
         url: "/posts/"
         weight: 2
       - identifier: "about"
@@ -29,26 +23,9 @@ params:
         url: "/about/"
         weight: 3
 
-  # آیکون‌های اجتماعی
   socialIcons:
     - name: "github"
       url: "https://github.com/imnajaniiiooo"
-    - name: "twitter"
-      url: "https://twitter.com/yourusername"
-
-  # تنظیمات پیشرفته
-  dateFormat: "2 January 2006"
-  fancyDates: true
-
-# نویسنده
-author:
-  name: "نام شما"
 
 pagination:
   pagerSize: 6
-# نویسنده
-params:
-  author:
-    name: "نام شما"
-    bio: "طراح و توسعه‌دهنده وب"
-    avatar: "/images/avatar.jpg"
