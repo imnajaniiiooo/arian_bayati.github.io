@@ -1,31 +1,92 @@
 baseURL: "https://imnajaniiiooo.github.io/"
-title: "وبلاگ من"
+title: "وبلاگ حرفه‌ای من"
 languageCode: "fa-ir"
 defaultContentLanguage: "fa"
-
-theme: "PaperMod"
+theme: "stack"
 
 params:
-  defaultTheme: auto
-  profileMode:
+  # تنظیمات پیشرفته
+  featuredImage:
     enabled: true
-    title: "وبلاگ شخصی من"
-    subtitle: "اینجا جایی است که افکار و تجربیاتم را به اشتراک می‌گذارم."
-  
+  comments:
+    enabled: true
+  sidebar:
+    enabled: true
   socialIcons:
     - name: "github"
       url: "https://github.com/imnajaniiiooo"
+    - name: "twitter"
+      url: "https://twitter.com/yourusername"
+    - name: "instagram" 
+      url: "https://instagram.com/yourusername"
+
+  # تنظیمات ظاهری پیشرفته
+  defaultTheme: "auto"
+  animation: true
+  fade: true
 
 menu:
   main:
-    - identifier: "about"
-      name: "درباره من"
-      url: "/about/"
-      weight: 10
+    - identifier: "home"
+      name: "🏠 صفحه اصلی"
+      url: "/"
+      weight: 1
+    - identifier: "posts"
+      name: "📝 مقالات"
+      url: "/posts/"
+
+# صفحه درباره من
+hugo new about.md
+
+# صفحه تماس
+hugo new contact.md
+cat > config.yml << 'EOF'
+baseURL: "https://imnajaniiiooo.github.io/"
+title: "وبلاگ حرفه‌ای من"
+languageCode: "fa-ir"
+defaultContentLanguage: "fa"
+theme: "stack"
+
+params:
+  featuredImage:
+    enabled: true
+  comments:
+    enabled: true
+  sidebar:
+    enabled: true
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/imnajaniiiooo"
+    - name: "twitter"
+      url: "https://twitter.com/yourusername"
+    - name: "instagram"
+      url: "https://instagram.com/yourusername"
+  defaultTheme: "auto"
+  animation: true
+  fade: true
+
+menu:
+  main:
+    - identifier: "home"
+      name: "🏠 صفحه اصلی"
+      url: "/"
+      weight: 1
+    - identifier: "posts"
+      name: "📝 مقالات"
+      url: "/posts/"
+      weight: 2
     - identifier: "archives"
-      name: "آرشیو"
+      name: "📚 آرشیو"
       url: "/archives/"
-      weight: 20
+      weight: 3
+    - identifier: "search"
+      name: "🔍 جستجو"
+      url: "/search/"
+      weight: 4
+    - identifier: "about"
+      name: "👤 درباره من"
+      url: "/about/"
+      weight: 5
 
 pagination:
-  pagerSize: 5
+  pagerSize: 6
