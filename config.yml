@@ -46,3 +46,9 @@ author:
 
 pagination:
   pagerSize: 6
+# نویسنده
+params:
+  author:
+    name: "نام شما"
+    bio: "طراح و توسعه‌دهنده وب"
+    avatar: "/images/avatar.jpg"
