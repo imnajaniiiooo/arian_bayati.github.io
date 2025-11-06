@@ -1,4 +1,5 @@
-baseURL: "https://YOUR_USERNAME.github.io/" # آدرس نهایی وبلاگ شما
+paginate: 5pagination:
+  pagerSize: 5baseURL: "https://YOUR_USERNAME.github.io/" # آدرس نهایی وبلاگ شما
 title: "My Awesome Blog" # عنوان وبلاگ
 languageCode: "fa-ir" # کد زبان برای فارسی
 defaultContentLanguage: "fa" # زبان پیش‌فرض محتوا
