@@ -1,0 +1,57 @@
+baseURL: "https://YOUR_USERNAME.github.io/" # آدرس نهایی وبلاگ شما
+title: "My Awesome Blog" # عنوان وبلاگ
+languageCode: "fa-ir" # کد زبان برای فارسی
+defaultContentLanguage: "fa" # زبان پیش‌فرض محتوا
+
+paginate: 5 # تعداد پست‌ها در صفحه اصلی
+enableRobotsTXT: true
+
+# قالب سایت
+theme: "PaperMod"
+
+# تنظیمات قالب PaperMod
+params:
+  defaultTheme: auto # auto, light, dark
+  # سبک‌های دیگر برای شخصی‌سازی بیشتر
+  profileMode:
+    enabled: true
+    title: "وبلاگ شخصی من" # عنوان در صفحه اصلی
+    subtitle: "اینجا جایی است که افکار و تجربیاتم را به اشتراک می‌گذارم."
+    imageUrl: "/avatar.jpg" # آواتار شما (فایل را در پوشه static قرار دهید)
+    imageWidth: 120
+    imageHeight: 120
+
+  # نمایش دکمه‌های اجتماعی
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/YOUR_USERNAME"
+    - name: "twitter"
+      url: "https://twitter.com/YOUR_USERNAME"
+
+  # نمایش آیکون برای فاوآیکون
+  assets:
+    favicon: "/favicon.ico"
+
+# منوهای ناوبری
+menu:
+  main:
+    - identifier: "about"
+      name: "درباره من"
+      url: "/about/"
+      weight: 10
+    - identifier: "archives"
+      name: "آرشیو"
+      url: "/archives/"
+      weight: 20
+
+# تنظیمات خروجی برای ساخت بهتر
+markup:
+  goldmark:
+    renderer:
+      unsafe: true # برای اجازه استفاده از HTML در مارکداwn
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+

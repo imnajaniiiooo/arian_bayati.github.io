@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وبلاگ شخصی</title>
+    <style>
+        /* استایل‌های کلی */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ff7e5f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+
+        .btn-accent:hover {
+            background-color: #ff6b4a;
+        }
+
+        /* هدر و ناوبری */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-left: 8px;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* بخش هیرو */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 L1000,0 L1000,100 L0,100 Z" fill="white" opacity="0.1"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        /* بخش مقالات */
+        .posts-section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .post-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            animation: fadeIn 0.8s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            height: 200px;
+            background-color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .post-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .post-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .read-more i {
+            margin-right: 5px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        /* فوتر */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-right: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* مودال ثبت‌نام و ورود */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+            outline: none;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-blog"></i>
+                    وبلاگ من
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">خانه</a></li>
+                    <li><a href="#">مقالات</a></li>
+                    <li><a href="#">درباره من</a></li>
+                    <li><a href="#">تماس با من</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn" id="loginBtn">ورود</button>
+                    <button class="btn btn-accent" id="registerBtn">ثبت نام</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- بخش هیرو -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>به وبلاگ شخصی من خوش آمدید</h1>
+                <p>اینجا مکانی است برای به اشتراک گذاشتن افکار، تجربیات و دانش من در زمینه‌های مختلف. از تکنولوژی گرفته تا سفر و زندگی روزمره.</p>
+                <button class="btn btn-accent pulse">شروع کنید</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش مقالات -->
+    <section class="posts-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>آخرین مقالات</h2>
+            </div>
+            <div class="posts-grid">
+                <!-- مقاله ۱ -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="https://via.placeholder.com/400x200/4a6fa5/ffffff?text=تکنولوژی" alt="مقاله تکنولوژی">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ۱۵ مرداد ۱۴۰۲</span>
+                            <span><i class="far fa-comment"></i> ۵ نظر</span>
+                        </div>
+                        <h3 class="post-title">تأثیر هوش مصنوعی بر زندگی روزمره</h3>
+                        <p class="post-excerpt">هوش مصنوعی در حال تغییر روش زندگی، کار و تعامل ما با جهان است. در این مقاله به بررسی تأثیرات آن می‌پردازیم.</p>
+                        <a href="#" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- مقاله ۲ -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="https://via.placeholder.com/400x200/6b8cbc/ffffff?text=سفر" alt="مقاله سفر">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ۱۰ مرداد ۱۴۰۲</span>
+                            <span><i class="far fa-comment"></i> ۸ نظر</span>
+                        </div>
+                        <h3 class="post-title">۱۰ مقصد برتر برای سفر در تابستان</h3>
+                        <p class="post-excerpt">تابستان فصل سفر و ماجراجویی است. در این مقاله بهترین مقاصد تابستانی را برای شما معرفی کرده‌ایم.</p>
+                        <a href="#" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- مقاله ۳ -->
+                <div class="post-card">
+                    <div class="post-image">
+                        <img src="https://via.placeholder.com/400x200/ff7e5f/ffffff?text=برنامه‌نویسی" alt="مقاله برنامه‌نویسی">
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <span><i class="far fa-calendar"></i> ۵ مرداد ۱۴۰۲</span>
+                            <span><i class="far fa-comment"></i> ۱۲ نظر</span>
+                        </div>
+                        <h3 class="post-title">راهنمای جامع یادگیری پایتون در ۲۰۲۳</h3>
+                        <p class="post-excerpt">پایتون یکی از محبوب‌ترین زبان‌های برنامه‌نویسی است. در این مقاله راهنمای کامل یادگیری آن را ارائه داده‌ایم.</p>
+                        <a href="#" class="read-more">ادامه مطلب <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>درباره وبلاگ</h3>
+                    <p>این وبلاگ شخصی مکانی برای به اشتراک گذاشتن تجربیات، دانش و علایق من در زمینه‌های مختلف است.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>لینک‌های سریع</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">خانه</a></li>
+                        <li><a href="#">مقالات</a></li>
+                        <li><a href="#">درباره من</a></li>
+                        <li><a href="#">تماس با من</a></li>
+                        <li><a href="#">حریم خصوصی</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>دسته‌بندی‌ها</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تکنولوژی</a></li>
+                        <li><a href="#">سفر</a></li>
+                        <li><a href="#">برنامه‌نویسی</a></li>
+                        <li><a href="#">زندگی شخصی</a></li>
+                        <li><a href="#">کتاب و مطالعه</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>عضویت در خبرنامه</h3>
+                    <p>برای دریافت آخرین مقالات و به‌روزرسانی‌ها، ایمیل خود را وارد کنید.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="ایمیل شما">
+                        </div>
+                        <button type="submit" class="btn btn-accent">عضویت</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© ۱۴۰۲ کلیه حقوق محفوظ است. طراحی و توسعه توسط [نام شما]</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- مودال ورود -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>ورود به حساب کاربری</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">ایمیل</label>
+                    <input type="email" id="loginEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">رمز عبور</label>
+                    <input type="password" id="loginPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-accent" style="width: 100%;">ورود</button>
+                <div class="form-footer">
+                    <p>حساب کاربری ندارید؟ <a href="#" id="showRegister">ثبت نام کنید</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- مودال ثبت نام -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>ایجاد حساب کاربری</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">نام کامل</label>
+                    <input type="text" id="registerName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">ایمیل</label>
+                    <input type="email" id="registerEmail" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">رمز عبور</label>
+                    <input type="password" id="registerPassword" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تکرار رمز عبور</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-accent" style="width: 100%;">ثبت نام</button>
+                <div class="form-footer">
+                    <p>قبلاً حساب کاربری دارید؟ <a href="#" id="showLogin">وارد شوید</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // مدیریت مودال‌ها
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+
+        // باز کردن مودال ورود
+        loginBtn.addEventListener('click', () => {
+            loginModal.style.display = 'flex';
+        });
+
+        // باز کردن مودال ثبت نام
+        registerBtn.addEventListener('click', () => {
+            registerModal.style.display = 'flex';
+        });
+
+        // بستن مودال‌ها
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'none';
+            });
+        });
+
+        // سوئیچ بین مودال‌ها
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            registerModal.style.display = 'flex';
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.style.display = 'none';
+            loginModal.style.display = 'flex';
+        });
+
+        // بستن مودال با کلیک خارج از آن
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (e.target === registerModal) {
+                registerModal.style.display = 'none';
+            }
+        });
+
+        // مدیریت فرم‌ها
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('ورود با موفقیت انجام شد!');
+            loginModal.style.display = 'none';
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('رمز عبور و تکرار آن مطابقت ندارند!');
+                return;
+            }
+            
+            alert('ثبت نام با موفقیت انجام شد!');
+            registerModal.style.display = 'none';
+        });
+
+        // انیمیشن برای کارت‌های مقالات
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.post-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
