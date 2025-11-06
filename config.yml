@@ -2,91 +2,47 @@ baseURL: "https://imnajaniiiooo.github.io/"
 title: "وبلاگ حرفه‌ای من"
 languageCode: "fa-ir"
 defaultContentLanguage: "fa"
-theme: "stack"
+theme: "hello-friend"
 
 params:
+  # تنظیمات اصلی
+  defaultTheme: "auto"
+  disableThemeToggle: false
+  
+  # ظاهر و رنگ
+  brandColor: "#FF6B6B"
+  backgroundColor: "white"
+  
+  # منو
+  menu:
+    main:
+      - identifier: "home"
+        name: "🏠 خانه"
+        url: "/"
+        weight: 1
+      - identifier: "posts"
+        name: "📝 مقالات" 
+        url: "/posts/"
+        weight: 2
+      - identifier: "about"
+        name: "👤 درباره من"
+        url: "/about/"
+        weight: 3
+
+  # آیکون‌های اجتماعی
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/imnajaniiiooo"
+    - name: "twitter"
+      url: "https://twitter.com/yourusername"
+
   # تنظیمات پیشرفته
-  featuredImage:
-    enabled: true
-  comments:
-    enabled: true
-  sidebar:
-    enabled: true
-  socialIcons:
-    - name: "github"
-      url: "https://github.com/imnajaniiiooo"
-    - name: "twitter"
-      url: "https://twitter.com/yourusername"
-    - name: "instagram" 
-      url: "https://instagram.com/yourusername"
+  dateFormat: "2 January 2006"
+  fancyDates: true
 
-  # تنظیمات ظاهری پیشرفته
-  defaultTheme: "auto"
-  animation: true
-  fade: true
-
-menu:
-  main:
-    - identifier: "home"
-      name: "🏠 صفحه اصلی"
-      url: "/"
-      weight: 1
-    - identifier: "posts"
-      name: "📝 مقالات"
-      url: "/posts/"
-
-# صفحه درباره من
-hugo new about.md
-
-# صفحه تماس
-hugo new contact.md
-cat > config.yml << 'EOF'
-baseURL: "https://imnajaniiiooo.github.io/"
-title: "وبلاگ حرفه‌ای من"
-languageCode: "fa-ir"
-defaultContentLanguage: "fa"
-theme: "stack"
-
-params:
-  featuredImage:
-    enabled: true
-  comments:
-    enabled: true
-  sidebar:
-    enabled: true
-  socialIcons:
-    - name: "github"
-      url: "https://github.com/imnajaniiiooo"
-    - name: "twitter"
-      url: "https://twitter.com/yourusername"
-    - name: "instagram"
-      url: "https://instagram.com/yourusername"
-  defaultTheme: "auto"
-  animation: true
-  fade: true
-
-menu:
-  main:
-    - identifier: "home"
-      name: "🏠 صفحه اصلی"
-      url: "/"
-      weight: 1
-    - identifier: "posts"
-      name: "📝 مقالات"
-      url: "/posts/"
-      weight: 2
-    - identifier: "archives"
-      name: "📚 آرشیو"
-      url: "/archives/"
-      weight: 3
-    - identifier: "search"
-      name: "🔍 جستجو"
-      url: "/search/"
-      weight: 4
-    - identifier: "about"
-      name: "👤 درباره من"
-      url: "/about/"
-      weight: 5
+# نویسنده
+author:
+  name: "نام شما"
 
 pagination:
   pagerSize: 6
